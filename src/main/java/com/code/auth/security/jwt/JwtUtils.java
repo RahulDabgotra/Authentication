@@ -15,8 +15,6 @@ import org.springframework.web.util.WebUtils;
 import com.code.auth.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 
-
-
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
@@ -69,7 +67,6 @@ public class JwtUtils {
         } catch (IllegalArgumentException e) {
             logger.error("JWT claims string is empty: {}", e.getMessage());
         }
-
         return false;
     }
 
