@@ -1,7 +1,6 @@
 package com.code.auth.models;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "roles")
