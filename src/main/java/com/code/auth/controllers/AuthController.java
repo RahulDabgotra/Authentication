@@ -3,14 +3,14 @@ package com.code.auth.controllers;
 import com.code.auth.models.ERole;
 import com.code.auth.models.Role;
 import com.code.auth.models.User;
-import com.code.auth.payload.request.LoginRequest;
-import com.code.auth.payload.request.SignupRequest;
-import com.code.auth.payload.response.MessageResponse;
-import com.code.auth.payload.response.UserInfoResponse;
 import com.code.auth.repository.RoleRepository;
 import com.code.auth.repository.UserRepository;
 import com.code.auth.security.jwt.JwtUtils;
 import com.code.auth.security.services.UserDetailsImpl;
+import com.code.auth.payload.request.LoginRequest;
+import com.code.auth.payload.request.SignupRequest;
+import com.code.auth.payload.response.MessageResponse;
+import com.code.auth.payload.response.UserInfoResponse;
 
 import jakarta.validation.Valid;
 
@@ -52,9 +52,13 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
         List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
