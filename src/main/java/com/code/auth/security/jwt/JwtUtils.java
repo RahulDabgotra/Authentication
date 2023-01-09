@@ -12,7 +12,6 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
-import java.security.SignatureException;
 import com.code.auth.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 
