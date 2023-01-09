@@ -1,5 +1,6 @@
 package com.code.auth.payload.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -11,7 +12,8 @@ public class SignupRequest {
    private String username;
 
     @NotBlank
-    @Size(min = 3, max =20)
+    @Size(max =50)
+    @Email
     private String email;
 
     private Set<String> role;
